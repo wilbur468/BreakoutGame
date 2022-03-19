@@ -4,6 +4,13 @@ const ctx = canvas.getContext('2d');
 canvas.height = 500;
 canvas.width = 500;
 
+let brickRowCount = 3;
+let brickColumnCount = 5;
+let brickWidth = 70;
+let brickHeight = 20;
+let brickPadding = 20;
+let brickOffsetTop = 30;
+let brickOffsetLeft = 35;
 
 let speed = 3;
 
@@ -22,7 +29,6 @@ let ball = {
     }
 };
 
-
 let paddle = {
     height: 10,
     width: 76,
@@ -35,26 +41,64 @@ let paddle = {
     }
 };
 
-function play() {
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ball.draw();
-    paddle.draw();
-    movePaddle();
 
-    ball.x += ball.dx;
-    ball.y += ball.dy;
-
-    if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-        ball.dx *= -1;
-
+let bricks = [];
+function generateBricks() {
+    for (let c = 0; c < brickColumnCount; c++) {
+        bricks[c] = [];
+        for (let r = 0; r < brickRowCount; r++) {
+            bricks[c][r] = { x: 0, y: 0, status: 1 } // if status is 1, brick is going to appear. If there is a hit, the status changes to 0.
+        }
     }
-
-    if (ball.y + ball.radius > canvas.width || ball.y - ball.radius < 0) {
-        ball.dy *= -1;
-
-    }
-
-    requestAnimationFrame(play);
 }
-play();
+
+function drawBricks() {
+    for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+            if (bricks[c][r].status === 1) {
+                let brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+                let brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+                bricks[c][r].x = brickX;
+                bricks[c][r].y = brickY;
+                ctx.beginPath();
+                ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                ctx.fillStyle = '#A020F0';
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+    }
+}
+
+
+function collisionDetection() {
+
+    for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+            let b = bricks[c][r];
+            if (b.status == 1) {
+                if (
+                    ball.x >= b.x && ball.x <= b.x + brickWidth
+                    && ball.y >= b.y
+                    && ball.y <= b.y + brickHeight) {
+
+                    ball.dy *= -1;
+                    b.status = 0;
+                    //score++
+                }
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+

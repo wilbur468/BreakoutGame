@@ -22,12 +22,21 @@ function keyUpHandler(e) {
     }
 }
 
+
+
 function movePaddle() {
     if (rightPressed) {
         paddle.x += 7;
+        if (paddle.x + paddle.width >= canvas.width) {
+            paddle.x = canvas.width - paddle.width;
+        }
     } else if (leftPressed) {
         paddle.x -= 7;
+        if (paddle.x < 0) {
+            paddle.x = 0;
+        }
     }
 }
+
 
 
