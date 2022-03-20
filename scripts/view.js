@@ -72,6 +72,15 @@ function drawBricks() {
 }
 
 
+
+
+let score = 0;
+
+function drawScore() {
+    ctx.font = 'bold 17px serif';
+    ctx.fillStyle = '#000000'
+    ctx.fillText("Score: " + score, 8, 20);
+}
 function collisionDetection() {
 
     for (let c = 0; c < brickColumnCount; c++) {
@@ -85,7 +94,7 @@ function collisionDetection() {
 
                     ball.dy *= -1;
                     b.status = 0;
-                    //score++
+                    score++
                 }
             }
         }

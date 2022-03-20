@@ -9,6 +9,10 @@ function play() {
     bounce();
     drawBricks();
     collisionDetection();
+    drawScore();
+    levelUp();
+    resetScore();
+
 
 
     ball.x += ball.dx;
@@ -37,6 +41,31 @@ function bounce() {
 }
 
 
+let gameLevelUp = true;
+
+function levelUp() {
+    if (score % 15 == 0 && score != 0) {
+        if (ball.y > canvas.height / 2) {
+            generateBricks();
+        }
+
+        if (gameLevelUp) {
+            if (ball.dy > 0) {
+                ball.dy += 1;
+                gameLevelUp = false;
+            }
+            else if (ball.dy < 0) {
+                ball.dy -= 1;
+                gameLevelUp = false;
+            }
+        }
+        if (score % 15 != 0) {
+            gameLevelUp = true;
+        }
+    }
+}
 
 generateBricks();
+
 play();
+

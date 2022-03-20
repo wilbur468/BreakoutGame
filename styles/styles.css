@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Bubblegum Sans', cursive;
+    font-family: 'Press Start 2P', cursive;
     color: black;
 }
 
@@ -22,18 +22,30 @@ body{
 
 .high-score{
     position: absolute;
-    top: 1.5rem;
+    margin-top: 1.5%;
     width: 80%;
     left: 10%;
     text-align: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .reset{
     cursor: pointer;
-    position:absolute;
-    top: 95%;
-    left: 10%;
-    width: 80%;
+    position: absolute;
+    padding: 10px;
+    border-radius: 2em;
+    left: 48%;
+    top: 90%;
     text-align: center;
+}
 
+.reset:hover{
+    background-color: rgb(121, 245, 121);
+    opacity: 70%;
+
+}
+
+.gameTitle{
+    margin-top: 2%;
+    text-align: center;
 }
