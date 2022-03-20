@@ -53,6 +53,7 @@ function generateBricks() {
     }
 }
 
+
 function drawBricks() {
     for (let c = 0; c < brickColumnCount; c++) {
         for (let r = 0; r < brickRowCount; r++) {
@@ -72,7 +73,11 @@ function drawBricks() {
 }
 
 
-
+var sfx3 = {
+    levelUp: new Howl({
+        src: ['assets/levelUp.mp3']
+    })
+}
 
 let score = 0;
 
@@ -80,7 +85,17 @@ function drawScore() {
     ctx.font = 'bold 17px serif';
     ctx.fillStyle = '#000000'
     ctx.fillText("Score: " + score, 8, 20);
+
 }
+
+var sfx = {
+    hit: new Howl({
+        src: ['assets/hit.wav']
+    })
+}
+
+
+
 function collisionDetection() {
 
     for (let c = 0; c < brickColumnCount; c++) {
@@ -94,7 +109,11 @@ function collisionDetection() {
 
                     ball.dy *= -1;
                     b.status = 0;
+                    sfx.hit.play(); //plays when the block hits
                     score++
+                    if (score % 15 == 0 && score != 0) {
+                        sfx3.levelUp.play();
+                    }
                 }
             }
         }

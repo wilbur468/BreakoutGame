@@ -15,10 +15,15 @@ reset.addEventListener('click', () => {
     drawBricks();
 });
 
+var sfx2 = {
+    collision: new Howl({
+        src: ['assets/gameOver.wav']
+    })
+}
 function resetScore() {
 
     if (ball.y + ball.radius > canvas.height) {
-        console.log("Entering");
+        sfx2.collision.play();
         if (score > parseInt(localStorage.getItem("highScore"))) {
             localStorage.setItem("highScore", score.toString());
             scoreDisplay.innerHTML = `High Score: ${score}`

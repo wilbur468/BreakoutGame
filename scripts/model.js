@@ -41,21 +41,27 @@ function bounce() {
 }
 
 
+
+
 let gameLevelUp = true;
 
+
+
 function levelUp() {
+
     if (score % 15 == 0 && score != 0) {
         if (ball.y > canvas.height / 2) {
             generateBricks();
         }
 
         if (gameLevelUp) {
+
             if (ball.dy > 0) {
-                ball.dy += 1;
+                ball.dy += 1.5;
                 gameLevelUp = false;
             }
             else if (ball.dy < 0) {
-                ball.dy -= 1;
+                ball.dy -= 1.5;
                 gameLevelUp = false;
             }
         }
@@ -65,7 +71,8 @@ function levelUp() {
     }
 }
 
-generateBricks();
 
+generateBricks();
 play();
+
 
