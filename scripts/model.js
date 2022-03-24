@@ -57,11 +57,11 @@ function levelUp() {
         if (gameLevelUp) {
 
             if (ball.dy > 0) {
-                ball.dy += 1.5;
+                ball.dy += 2.5;
                 gameLevelUp = false;
             }
             else if (ball.dy < 0) {
-                ball.dy -= 1.5;
+                ball.dy -= 2.5;
                 gameLevelUp = false;
             }
         }
