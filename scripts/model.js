@@ -71,6 +71,13 @@ function levelUp() {
     }
 }
 
+var music = {
+    gameMusic: new Howl({
+        src: ['assets/gamemusic.ogg'],
+        autoplay: true, loop: true
+    })
+}
+
 
 generateBricks();
 play();
