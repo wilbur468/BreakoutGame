@@ -5,7 +5,6 @@ const reset = document.querySelector(".reset");
 
 if (isNaN(highScore)) {
     highScore == 0;
-    console.log('NAN');
 }
 
 scoreDisplay.innerHTML = `High Score: ${highScore}`;
