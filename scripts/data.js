@@ -4,7 +4,7 @@ let highScore = parseInt(localStorage.getItem("highScore"));
 const reset = document.querySelector(".reset");
 
 if (isNaN(highScore)) {
-    highScore == 0;
+    highScore = 0;
 }
 
 scoreDisplay.innerHTML = `High Score: ${highScore}`;
